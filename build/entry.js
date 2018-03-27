@@ -1,4 +1,8 @@
-import { displayLightbox } from '../src/index';
+import { displayLightbox, configureLightbox } from '../src/index';
+
+configureLightbox({
+    transitionDuration: 300
+})
 
 const items = [];
 Array.from(document.querySelectorAll('img')).forEach((img, index) => {
