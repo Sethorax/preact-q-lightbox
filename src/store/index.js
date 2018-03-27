@@ -5,7 +5,8 @@ const initialState = {
     currentItem:0,
     isVisible: false,
     isLoading: false,
-    isTransitioning: false
+    isTransitioning: false,
+    canNavigate: true
 };
 
 export const store = createStore(initialState);

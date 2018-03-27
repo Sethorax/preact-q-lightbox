@@ -3,39 +3,51 @@ import { connect } from 'unistore/preact';
 import LightboxContent from './lightbox-content';
 import LightboxArrows from './lightbox-arrows';
 import LightboxCloseButton from './lightbox-close-button';
-import LightboxControlBar from './lightbox-control-bar';
+import LightboxLoadingBar from './lightbox-loading-bar';
 import actions from '../actions/index';
 
 class QLightbox extends Preact.Component {
     canNavigate() {
-        return this.props.isTransitioning === false;
+        return this.props.canNavigate && this.props.isTransitioning === false;
     }
     
+    gotoItem(index) {
+        this.props.setCanNavigate(false);
+        this.props.setCurrentItem(index);
+    }
+
     gotoNext() {
         if (!this.canNavigate()) return;
 
         const nextSlideIndex = this.props.currentItem < this.props.items.length - 1 ? this.props.currentItem + 1 : 0;
-        this.props.setCurrentItem(nextSlideIndex);
+        this.gotoItem(nextSlideIndex);
     }
 
     gotoPrev() {
         if (!this.canNavigate()) return;
 
         const prevSlideIndex = this.props.currentItem > 0 ? this.props.currentItem - 1 : this.props.items.length - 1;
-        this.props.setCurrentItem(prevSlideIndex);
+        this.gotoItem(prevSlideIndex);
     }
 
     render() {
         return (
             <div class="q-lightbox" style={this.props.isVisible ? { opacity: 1, pointerEvents: 'all' } : { opacity: 0, pointerEvents: 'none' }}>
-                <LightboxContent item={this.props.items[this.props.currentItem]} />
-                <LightboxControlBar />
+                <LightboxContent item={this.props.items[this.props.currentItem]} transitionDuration={this.props.transitionDuration} />
+                <LightboxLoadingBar />
 
-                <LightboxArrows onNextClick={this.gotoNext.bind(this)} onPrevClick={this.gotoPrev.bind(this)} />
+                {this.props.showArrows && (
+                    <LightboxArrows onNextClick={this.gotoNext.bind(this)} onPrevClick={this.gotoPrev.bind(this)} />
+                )}
                 <LightboxCloseButton />
             </div>
         )
     }
 };
 
-export default connect(['currentItem', 'isVisible', 'isTransitioning'], actions)(QLightbox);
+QLightbox.defaultProps = {
+    showArrows: true,
+    transitionDuration: 500
+};
+
+export default connect(['currentItem', 'isVisible', 'isTransitioning', 'canNavigate'], actions)(QLightbox);
