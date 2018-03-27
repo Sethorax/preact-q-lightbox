@@ -43,7 +43,7 @@
   },
   "jest": {
     "moduleNameMapper": {
-      "unistore/preact": "<rootDir>/test/mocks/connect-mock.js"
+      "unistore/preact": "<rootDir>/test/mocks/connect-store-mock.js"
     }
   }
 }
