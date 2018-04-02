@@ -1,6 +1,7 @@
 import Preact, { h } from 'preact';
 import { connect } from 'unistore/preact';
 import actions from '../actions/index';
+import { assign } from '../utils/index';
 
 class LightboxContent extends Preact.Component {
     constructor() {
@@ -45,7 +46,7 @@ class LightboxContent extends Preact.Component {
         this.props.setLoadingState(false);
         this.props.setTransitionState(true);
 
-        this.setState(Object.assign({
+        this.setState(assign({
             nextContent: content,
             mediumMaxWidth: width,
             mediumMaxHeight: height

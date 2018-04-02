@@ -2,6 +2,7 @@ import Preact, { h } from 'preact';
 import { Provider } from 'unistore/preact';
 import { store } from './store/index';
 import { validateItems } from './utils/item-validator';
+import { assign } from './utils/index';
 import QLightbox from './components/q-lightbox';
 
 let rootElement;
@@ -20,7 +21,7 @@ export const Lightbox = () => ({
     render(items, startIndex = 0) {
         if (!validateItems(items)) return console.warn('[QLightbox] Invalid item structure!');
 
-        const props = Object.assign(this.defaultProps, { items });
+        const props = assign(this.defaultProps, { items });
         store.setState({ currentItem: startIndex });
 
         Preact.render(
@@ -33,6 +34,6 @@ export const Lightbox = () => ({
     },
 
     setDefaultProps(props) {
-        this.defaultProps = Object.assign(this.defaultProps, props);
+        this.defaultProps = assign(this.defaultProps, props);
     }
 });
