@@ -36,7 +36,7 @@ class QLightbox extends Preact.Component {
                 <LightboxContent item={this.props.items[this.props.currentItem]} transitionDuration={this.props.transitionDuration} />
                 <LightboxLoadingBar />
 
-                {this.props.showArrows && (
+                {this.props.showArrows && this.props.items.length > 1 && (
                     <LightboxArrows onNextClick={this.gotoNext.bind(this)} onPrevClick={this.gotoPrev.bind(this)} />
                 )}
                 <LightboxCloseButton />

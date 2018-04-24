@@ -1,6 +1,6 @@
 {
   "name": "preact-q-lightbox",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "main": "./dist/preact-q-lightbox.js",
   "license": "MIT",
   "dependencies": {
@@ -21,6 +21,7 @@
     "node-sass": "^4.7.2",
     "postcss-loader": "^2.1.3",
     "preact-render-spy": "^1.2.2",
+    "rimraf": "^2.6.2",
     "sass-loader": "^6.0.7",
     "style-loader": "^0.20.3",
     "webpack": "^4.1.1",
