@@ -1,6 +1,6 @@
 {
   "name": "preact-q-lightbox",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "main": "./dist/preact-q-lightbox.js",
   "license": "MIT",
   "dependencies": {
