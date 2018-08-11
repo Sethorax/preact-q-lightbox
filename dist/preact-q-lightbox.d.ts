@@ -1,4 +1,4 @@
-export enum ItemType {
+export const enum ItemType {
     Image = 'image',
 }
 
